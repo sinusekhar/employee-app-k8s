@@ -1,6 +1,8 @@
 package com.sinu.play.apps.dao;
 
 import com.sinu.play.apps.cbo.Employee;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Repository
 @EnableTransactionManagement
 public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao {
+    private static final Logger logger = LogManager.getLogger(EmployeeDaoImpl.class);
     private SessionFactory sessionFactory;
 
     @Qualifier("sessionFactory")
@@ -28,6 +31,8 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 
     @Override
     public Employee getEmployee(int id) throws Exception {
-        return this.sessionFactory.getCurrentSession().load(Employee.class,id);
+        Employee emp = this.sessionFactory.getCurrentSession().load(Employee.class,id);
+
+        return emp;
     }
 }

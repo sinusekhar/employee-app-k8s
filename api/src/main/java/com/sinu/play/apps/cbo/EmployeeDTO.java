@@ -1,6 +1,8 @@
 package com.sinu.play.apps.cbo;
 
-public class EmployeeDTO {
+import java.io.Serializable;
+
+public class EmployeeDTO implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
