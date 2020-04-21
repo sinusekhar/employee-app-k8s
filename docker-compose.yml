@@ -17,6 +17,8 @@ services:
         image: 'redis:latest'
     mysql:
         image: 'mysql:latest'
+        ports:
+          - 3307:3306
         command: --init-file /data/application/init.sql
         volumes:
             - ./database/init.sql:/data/application/init.sql
