@@ -7,4 +7,4 @@ RUN ["mvn","package"]
 FROM openjdk:8
 COPY --from=builder /app/target/employee-app.jar /app/app.jar
 
-CMD ["java","-jar","/app/app.jar"]
+CMD ["java", "-jar","-Denv_type=dev","-Dcatalina.home=/","/app/app.jar"]
