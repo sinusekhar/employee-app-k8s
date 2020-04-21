@@ -22,3 +22,9 @@ services:
         command: --init-file /data/application/init.sql
         volumes:
             - ./database/init.sql:/data/application/init.sql
+    counter-app:
+      build:
+        dockerfile: Dockerfile.dev
+        context: ./counter-app
+      ports:
+        - 5000:5000
