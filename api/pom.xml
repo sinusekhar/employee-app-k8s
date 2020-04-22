@@ -34,6 +34,7 @@
     <redis-version>3.12.5</redis-version>
     <log4j.version>2.11.2</log4j.version>
     <disruptor.version>3.4.2</disruptor.version>
+    <httpclient-version>4.5.12</httpclient-version>
   </properties>
 
   <dependencies>
@@ -168,6 +169,14 @@
       <artifactId>disruptor</artifactId>
       <version>${disruptor.version}</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpclient-version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>

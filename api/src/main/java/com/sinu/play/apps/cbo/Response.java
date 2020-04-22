@@ -5,6 +5,15 @@ import java.io.Serializable;
 public class Response implements Serializable {
     public int code;
     public String status;
+    public int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCode() {
         return code;

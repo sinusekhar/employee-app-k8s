@@ -1,10 +1,9 @@
 package com.sinu.play.apps.controller;
 
-import com.sinu.play.apps.cbo.Employee;
 import com.sinu.play.apps.cbo.EmployeeDTO;
 import com.sinu.play.apps.cbo.Response;
 import com.sinu.play.apps.dao.CacheDao;
-import com.sinu.play.apps.dao.EmployeeDao;
+import com.sinu.play.apps.service.EmployeeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
     @Autowired
-    private EmployeeDao employeeDao;
+    private EmployeeService employeeService;
 
     @Autowired
     private CacheDao cacheDao;
@@ -24,16 +23,12 @@ public class EmployeeController {
     @Transactional
     public Response createEmployee(@RequestBody EmployeeDTO employeeDTO){
         try {
-            Employee emp = new Employee();
-            emp.setFirstName(employeeDTO.getFirstName());
-            emp.setLastName(employeeDTO.getLastName());
-            emp.setId(employeeDTO.getId());
-
-            employeeDao.createEmployee(emp);
+            employeeService.createEmployee(employeeDTO);
 
             Response res = new Response();
             res.setCode(0);
             res.setStatus("success");
+            res.setId(employeeDTO.getId());
 
             return res;
         }catch(Exception ex){
@@ -56,12 +51,8 @@ public class EmployeeController {
                 logger.info("Returning from cache:"+id);
                 return (EmployeeDTO) cacheDao.get(Integer.toString(id));
             }
-            Employee emp = employeeDao.getEmployee(id);
 
-            EmployeeDTO employeeDTO = new EmployeeDTO();
-            employeeDTO.setFirstName(emp.getFirstName());
-            employeeDTO.setLastName(emp.getLastName());
-            employeeDTO.setId(emp.getId());
+            EmployeeDTO employeeDTO = employeeService.getEmployee(id);
 
             logger.info("Returning from database:"+id);
             cacheDao.set(employeeDTO, Integer.toString(id));
