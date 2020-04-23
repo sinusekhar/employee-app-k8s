@@ -12,3 +12,4 @@ script:
   - docker push sinusekhar/employee-app
   - docker push sinusekhar/counter-app
   - docker push sinusekhar/nginx-employeeapp
+
