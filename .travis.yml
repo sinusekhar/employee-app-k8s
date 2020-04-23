@@ -1,0 +1,14 @@
+sudo: required
+services:
+    - docker
+
+script:
+  - docker build -t sinusekhar/employee-app ./api
+  - docker build -t sinusekhar/counter-app ./counter-app
+  - docker build -t sinusekhar/nginx-employeeapp ./nginx
+#Login to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#Push to Docker hub
+  - docker push sinusekhar/employee-app
+  - docker push sinusekhar/counter-app
+  - docker push sinusekhar/nginx-employeeapp
