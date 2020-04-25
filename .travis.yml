@@ -6,10 +6,11 @@ script:
   - docker build -t sinusekhar/employee-app ./api
   - docker build -t sinusekhar/counter-app ./counter-app
   - docker build -t sinusekhar/nginx-employeeapp ./nginx
+  - docker build -t sinusekhar/mysql-employeeapp ./database
 #Login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 #Push to Docker hub
   - docker push sinusekhar/employee-app
   - docker push sinusekhar/counter-app
   - docker push sinusekhar/nginx-employeeapp
-
+  - docker push sinusekhar/mysql-employeeapp
