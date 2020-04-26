@@ -70,6 +70,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/health/deep")
+    @Transactional(readOnly = true)
     public String healthDeep() throws Exception{
         try {
             return Boolean.toString(employeeService.healthCheck());
