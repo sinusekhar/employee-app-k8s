@@ -68,4 +68,15 @@ public class EmployeeController {
     public String health(){
         return "success";
     }
+
+    @GetMapping("/health/deep")
+    public String healthDeep() throws Exception{
+        try {
+            return Boolean.toString(employeeService.healthCheck());
+        }catch(Exception ex){
+            ex.printStackTrace();
+
+            throw ex;
+        }
+    }
 }

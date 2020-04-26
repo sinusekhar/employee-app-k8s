@@ -1,6 +1,7 @@
 package com.sinu.play.apps.dao;
 
 import com.sinu.play.apps.cbo.Employee;
+import com.sinu.play.apps.cbo.Health;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -34,5 +35,13 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
         Employee emp = this.sessionFactory.getCurrentSession().load(Employee.class,id);
 
         return emp;
+    }
+
+
+    @Override
+    public boolean healthCheck() throws Exception {
+        Health health = this.sessionFactory.getCurrentSession().load(Health.class,1);
+
+        return health.getStatus().equals("OK")?true:false;
     }
 }

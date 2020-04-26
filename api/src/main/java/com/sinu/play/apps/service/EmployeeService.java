@@ -68,4 +68,8 @@ public class EmployeeService {
         }
 
     }
+
+    public boolean healthCheck() throws Exception{
+        return employeeDao.healthCheck();
+    }
 }
