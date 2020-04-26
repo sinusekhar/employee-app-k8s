@@ -17,3 +17,6 @@ spec:
           image: sinusekhar/counter-app
           ports:
             - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
