@@ -17,3 +17,12 @@ spec:
           image: sinusekhar/employee-app
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 2
+            successThreshold: 3
+            timeoutSeconds: 5

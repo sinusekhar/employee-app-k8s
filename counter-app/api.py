@@ -8,6 +8,10 @@ redis = redis.Redis(host=os.environ.get('REDIS_HOST'), port=6379, db=0)
 def hello():
     return "Hello World!"
 
+@app.route("/health")
+def health():
+    return "Health Check Successful"
+
 @app.route("/counter")
 def get_counter():
     counter = redis.get('counter')

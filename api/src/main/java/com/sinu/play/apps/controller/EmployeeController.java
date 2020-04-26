@@ -63,4 +63,9 @@ public class EmployeeController {
             throw ex;
         }
     }
+
+    @GetMapping("/health")
+    public String health(){
+        return "success";
+    }
 }
