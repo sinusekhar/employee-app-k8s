@@ -21,13 +21,13 @@ spec:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 5
+            initialDelaySeconds: 30
             periodSeconds: 5
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /health/deep
               port: 8080
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 5
             timeoutSeconds: 5
