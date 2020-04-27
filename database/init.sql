@@ -6,11 +6,10 @@ CREATE TABLE `employeedb`.`employee` (
   `fname` VARCHAR(45) NULL,
   `lname` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
-
-
-  CREATE TABLE `employeedb`.`health` (
-    `id` INT NOT NULL,
-    `status` VARCHAR(45) NULL,
-    PRIMARY KEY (`id`));
+  
+CREATE TABLE `employeedb`.`health` (
+  `id` INT NOT NULL,
+  `status` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
 
 INSERT INTO health(id, status) VALUES (1,'OK');
