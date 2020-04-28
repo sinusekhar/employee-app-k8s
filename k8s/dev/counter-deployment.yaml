@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counterapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: counter
+  template:
+    metadata:
+      labels:
+        component: counter
+    spec:
+      containers:
+        - name: counter
+          image: sinusekhar/counter-app
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5

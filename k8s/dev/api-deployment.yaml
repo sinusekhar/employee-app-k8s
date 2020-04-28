@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: sinusekhar/employee-app
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health/deep
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 5
