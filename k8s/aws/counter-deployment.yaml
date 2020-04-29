@@ -19,7 +19,7 @@ spec:
             - containerPort: 5000
           env:
             - name: REDIS_HOST
-              value: redis-cluster-ip-service
+              value: employee-redis.o1hfxp.0001.usw2.cache.amazonaws.com
           livenessProbe:
             httpGet:
               path: /health
