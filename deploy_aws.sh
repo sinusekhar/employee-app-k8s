@@ -1,1 +1,1 @@
-kubectl apply k8s/aws
+kubectl apply -f k8s/aws

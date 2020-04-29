@@ -13,6 +13,7 @@ before_install:
 install:
   - export AWS_ACCESS_KEY_ID=`cat aws_access_key_id.txt`
   - export AWS_SECRET_ACCESS_KEY=`cat aws_secret_access_key.txt`
+  - rm -rf aws_*.txt
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
