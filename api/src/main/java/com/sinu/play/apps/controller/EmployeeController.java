@@ -66,14 +66,18 @@ public class EmployeeController {
 
     @GetMapping("/health")
     public String health(){
-        return "success";
+        return "Alive";
     }
 
     @GetMapping("/health/deep")
     @Transactional(readOnly = true)
     public String healthDeep() throws Exception{
         try {
-            return Boolean.toString(employeeService.healthCheck());
+            if(employeeService.healthCheck()){
+                return "Deep health check successful";
+            }else{
+                return "Deep health check failed";
+            }
         }catch(Exception ex){
             ex.printStackTrace();
 
