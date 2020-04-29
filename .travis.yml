@@ -34,8 +34,5 @@ script:
   - docker push sinusekhar/nginx-employeeapp
   - docker push sinusekhar/mysql-employeeapp
 
-deploy:
-  - provider: script
-    script: deploy_aws.sh
-    on:
-      branch: master
+after_script:
+  - kubectl apply -f k8s/aws
