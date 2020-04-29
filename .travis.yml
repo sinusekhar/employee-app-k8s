@@ -1,6 +1,24 @@
 sudo: required
 services:
     - docker
+env:
+  global:
+    - GIT_SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_d394d3a23da6_key -iv $encrypted_d394d3a23da6_iv -in aws_access_key_id.txt.enc -out aws_access_key_id.txt -d
+  - openssl aes-256-cbc -K $encrypted_81eb6836e55a_key -iv $encrypted_81eb6836e55a_iv -in aws_secret_access_key.txt.enc -out aws_secret_access_key.txt -d
+
+install:
+  - export AWS_ACCESS_KEY_ID=`cat aws_access_key_id.txt`
+  - export AWS_SECRET_ACCESS_KEY=`cat aws_secret_access_key.txt`
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - pip install --user awscli
+  - aws eks --region us-west-2 update-kubeconfig --name EmployeeTestCluster
+  - kubectl get pods
 
 script:
   - docker build -t sinusekhar/employee-app ./api
@@ -14,3 +32,6 @@ script:
   - docker push sinusekhar/counter-app
   - docker push sinusekhar/nginx-employeeapp
   - docker push sinusekhar/mysql-employeeapp
+
+deploy:
+  - kubectl apply k8s/aws
