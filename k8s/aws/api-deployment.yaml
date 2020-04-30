@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: api
@@ -15,6 +15,13 @@ spec:
       containers:
         - name: api
           image: sinusekhar/employee-app
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
           ports:
             - containerPort: 8080
           livenessProbe:
