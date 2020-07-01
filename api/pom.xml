@@ -32,7 +32,7 @@
     <jta-version>1.1</jta-version>
     <json-version>20180813</json-version>
     <redis-version>3.12.5</redis-version>
-    <log4j.version>2.11.2</log4j.version>
+    <log4j.version>2.13.3</log4j.version>
     <disruptor.version>3.4.2</disruptor.version>
     <httpclient-version>4.5.12</httpclient-version>
   </properties>
